@@ -3,7 +3,7 @@
  
 #author chaochao
 import os, sys, urllib.request,re,time
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
  
 #get html content
 def getHtml(url):

@@ -7,11 +7,18 @@
 
 import os,sys,urllib.request,re,time
 
+
+page=1
+#url_param = 'https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=' + keyword
+mailpattern = re.compile('[^\._:>\\-][\w\.-]+@(?:[A-Za-z0-9]+\.)+[A-Za-z]+')
+imgPattren = re.compile('<img class=*？ src="*.jpg"?')
+
 #Get HTML context
-def getHtml(url):
+def getHtml(keyword):
+    url = 'https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=' + str(keyword)
     file = urllib.request.urlopen(url)
     html = file.read()
-    html = html.decode('uft8')
+    html = html.decode('utf8')
     return html
 
 #GET the Regular matching data back, return List(...)
@@ -20,7 +27,10 @@ def getData(html,reg):
     list = re.findall(reg,html)
     return list
 
-html=getHtml("http://bohaishibei.com/post/category/main/")
+html=getHtml("keyboard")
+
+res=getData(html,imgPattren)
+
+print(res)
 
 
-def 

@@ -36,4 +36,4 @@ html = gethtml(url1)
 
 # res=getData(html,imgPattren)
 
-print(html)
+print(repr(html))

@@ -8,7 +8,7 @@ import threading
 import time
 
 reload(sys)
-sys.getfilesystemencoding()
+sys.setdefaultencoding('utf-8')
 
 
 class Archives(object):
@@ -16,6 +16,7 @@ class Archives(object):
 
     @staticmethod
     def save_links(url):
+
         try:
             data = requests.get(url)
             content = data.text
@@ -26,9 +27,20 @@ class Archives(object):
             links_dict = {}
             count = len(links)
         except Exception as e:
+            print(e)
             pass
         for i in links:
             links_dict[int(i[1][1:3]) * 100 + int(i[2][1:3])] = i  # 把剧集按s和e提取编号
+
+        try:
+            with open(name[0].replace('/', ' ') + '.txt', 'w') as f:
+                print(name[0])
+                for i in sorted(list(links_dict.keys())):  # 按季数+集数排序顺序写入
+                    f.write(links_dict[i][0] + '\n')
+            print("Get links ... ", name[0], count)
+        except Exception as e:
+            print(e)
+            pass
 
     def get_urls(self):
         try:
@@ -36,10 +48,13 @@ class Archives(object):
                 base_url = 'http://cn163.net/archives/'
                 url = base_url + str(i) + '/'
                 if requests.get(url).status_code == 404:
+                    print(repr(url + ": Return 404 code."))
                     continue
                 else:
+                    print(repr(url + ": Successfully."))
                     self.save_links(url)
         except Exception as e:
+            print(e)
             pass
 
     def main(self):
@@ -47,9 +62,11 @@ class Archives(object):
         thread1.start()
         thread1.join()
 
+
 if __name__ == '__main__':
     start = time.time()
+    print(repr(start))
     a = Archives()
     a.main()
     end = time.time()
-    print(end - start)
+    print(repr(end - start))

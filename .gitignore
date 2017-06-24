@@ -4,6 +4,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.xml
+keymaps/
+_mac/
+colors/
 
 # C extensions
 *.so

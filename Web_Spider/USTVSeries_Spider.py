@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 # encoding=utf-8
-# from imp import reload
-from importlib import reload
-
-import requests
+import os
 import re
-import sys, os
+import sys
 import threading
 import time
+from imp import reload
+
+import requests
+
+# from importlib import reload
 
 reload(sys)
 sys.getdefaultencoding().encode("gbk")

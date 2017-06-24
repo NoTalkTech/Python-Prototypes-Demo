@@ -3,9 +3,9 @@
 
 # Author : Wallace Huang
 # Time   : 2016-9-28 16:38:47
-# License: MIT
 
-import os, sys, urllib.request, re, time
+import re
+import urllib.request
 
 keyword = input("Please input a key word: ")
 url1 = 'https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=' + str(keyword)

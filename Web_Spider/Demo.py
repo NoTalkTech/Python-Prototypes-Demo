@@ -2,7 +2,11 @@
 # -*- coding: UTF-8 -*-
 import time
 
-print "你好，世界"
+from Web_Spider.support import print_func
+
+print_func("Runoob")
+print_func("Wallace")
+
 
 if True:
     print "Answer"
@@ -117,3 +121,22 @@ def printinfo(arg1, *vartuple):
 
 printinfo(10)
 printinfo(70, 60, 50)
+
+
+def reverse(li):
+    for i in range(0, len(li) / 2):
+        temp = li[i]
+        li[i] = li[-i - 1]
+        li[-i - 1] = temp
+
+
+l = [1, 2, 3, 4, 5]
+reverse(l)
+print l
+
+# 模块的引入
+# import support
+# support.print_func("Runoob")
+
+# from support import print_func
+# print_func("Runoob")

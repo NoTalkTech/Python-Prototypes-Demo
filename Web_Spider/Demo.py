@@ -2,12 +2,6 @@
 # -*- coding: UTF-8 -*-
 import time
 
-from Web_Spider.support import print_func
-
-print_func("Runoob")
-print_func("Wallace")
-
-
 if True:
     print "Answer"
     print "True"

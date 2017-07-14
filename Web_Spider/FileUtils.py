@@ -4,9 +4,13 @@ from pandas import datetime
 from pandas import read_csv
 
 
-def f_handler(f):
-    f_Obj = open(f, "wb")
-    return f_Obj
+def f_handler(f, m):
+    fo = open(f, m)
+    print "FileName: ", fo.name
+    print "Does it opened: ", fo.closed
+    print "Access mode: ", fo.mode
+    print "SoftSpace: ", fo.softspace
+    return fo
 
 
 def parser(x):
@@ -21,10 +25,7 @@ def r_file(f):
 if __name__ == '__main__':
     # series = r_file("F:\Code\10192057\Code\Web_Spider\example_data.csv\example_data.csv")
     # pyplot.show()
-    str = raw_input("Please input: ")
-    print str
-    fo = f_handler("example_data.csv")
-    print "FileName: ", fo.name
-    print "Does it opened: ", fo.closed
-    print "Access mode: ", fo.mode
-    print "Space: ", fo.softspace
+    # str = raw_input("Please input: ")
+    # print str
+    f1 = f_handler("example_data.csv", "wb")
+    f2 = f_handler("example_data.csv", "r+")

@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+import math
 import time
 
 if True:
@@ -203,3 +204,7 @@ print "dict['Age']: ", people['Age']
 # time模块
 ticks = time.time()
 print "当前时间戳为:", ticks
+
+# Math
+print math.exp(1)  # e^1 = 2.718281828459045
+print math.exp(0)  # e^0 = 1

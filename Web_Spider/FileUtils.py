@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+from matplotlib import pyplot
 from pandas import datetime
 from pandas import read_csv
 
@@ -27,5 +28,11 @@ if __name__ == '__main__':
     # pyplot.show()
     # str = raw_input("Please input: ")
     # print str
+    series = read_csv('F:\\Code\\10192057\\Code\\Web_Spider\\example_data.csv\\example_data.csv', header=0,
+                      parse_dates=[0], index_col=0, squeeze=True, date_parser=parser)
+
+    diff = series.diff()
+    pyplot.plot(diff)
+    pyplot.show()
     f1 = f_handler("example_data.csv", "wb")
     f2 = f_handler("example_data.csv", "r+")

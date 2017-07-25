@@ -1,0 +1,17 @@
+sudo: false
+
+language: python
+
+python:
+  - 2.7
+  - nightly
+
+matrix:
+  allow_failures:
+    - python: nightly
+
+install:
+  - pip install -r pandas statsmodels
+
+script:
+  - python ./Demo/StatsModelsDemo.py

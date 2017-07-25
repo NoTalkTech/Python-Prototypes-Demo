@@ -5,4 +5,4 @@
 [![CRAN](https://img.shields.io/cran/l/devtools.svg?style=plastic)](https://github.com/LeagueForHacker/Python-Prototypes-Demo/blob/master/LICENSE)
 
 * Author : ![Wallace Huang](https://github.com/BiyuHuang)
-* Email  : h417652303@gmail.com
+* Email  : h417652303@163.com h417652303@gmail.com

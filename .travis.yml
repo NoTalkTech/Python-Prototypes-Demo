@@ -11,7 +11,9 @@ matrix:
     - python: nightly
 
 install:
-  - pip install -r requirements.txt
+  - pip install --upgrade pip
+  - pip install --upgrade pandas
+  - pip install --upgrade statsmodels
 
 script:
   - python ./Demo/StatsModelsDemo.py

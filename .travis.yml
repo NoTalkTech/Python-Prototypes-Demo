@@ -13,6 +13,7 @@ install:
   - pip install --upgrade pip
   - pip install --upgrade pandas
   - pip install --upgrade statsmodels
+  - pip install --upgrade matplotlib
 
 script:
   - python ./Demo/StatsModelsDemo.py

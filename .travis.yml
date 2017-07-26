@@ -18,3 +18,4 @@ script:
   - python ./Demo/StatsModelsDemo.py
   - python ./test.py
   - python ./Demo/NumpyDemo.py
+  - python ./Web_Spider/FileUtils.py

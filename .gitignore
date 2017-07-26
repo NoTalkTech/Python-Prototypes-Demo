@@ -94,6 +94,5 @@ ENV/
 # Rope project settings
 .ropeproject
 
-.gitignore
 .idea/
 Web_Spider.iml

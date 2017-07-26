@@ -36,7 +36,8 @@ if __name__ == '__main__':
     print "OS separator: {}".format(os.sep)
 
     # 返回指定目录下的所有文件和目录名
-    filePath = os.getcwd() + os.sep + "../resources/"
+    filePath = os.getcwd() + os.sep + "resources" + os.sep
+
     fileName = '{}example_data.csv'.format(filePath)
     print "File Path: {}".format(filePath)
     print "Files List: {}".format(os.listdir(filePath))

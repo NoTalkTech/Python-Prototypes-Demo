@@ -2,43 +2,25 @@
 # -*- coding: UTF-8 -*-
 
 import numpy as np
-from statsmodels.compat import lrange
-from statsmodels.tsa.stattools import acf, acovf
 
 if __name__ == '__main__':
     # a = np.arange(1, 16).T.reshape((5, 3))
     # print a
 
-    b = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    b = [[1.0, 2.0], [2.0, 1.8], [3.0, 8.0], [4.0, 1.3], [5.0, 4.5], [6.0, 9.2]]
     x = np.asarray(b)
-    print "Input Array: x = ", x
-    nobs = x.shape[0]  # 获取矩阵的行数。即第一维度
-    print "Array rows: Nobs = ", nobs
+    print "Input Array [x]: ", x
+    rows = x.shape[0]  # 获取矩阵的行数,即第一维度
+    print "x_rows: {}".format(rows)
 
-    lags = 1
-    if lags is None:
-        lags = lrange(1, 41)  # TODO: check default; SS: changed to 40
-    elif isinstance(lags, (int, long)):
-        lags = lrange(1, lags + 1)
-    maxlag = max(lags)
-    lags = np.asarray(lags)
+    columns = x.shape[1]  # 获取矩阵的列数,即第二维度
+    print "x_cols: {}".format(columns)
 
-    acfx = acf(x, nlags=maxlag)  # normalize by nobs not (nobs-nlags)
-    acovf
-    # # SS: unbiased=False is default now
-    # #    acf2norm = acfx[1:maxlag+1]**2 / (nobs - np.arange(1,maxlag+1))
-    # acf2norm = acfx[1:maxlag + 1] ** 2 / (nobs - np.arange(1, maxlag + 1))
-    #
-    # qljungbox = nobs * (nobs + 2) * np.cumsum(acf2norm)[lags - 1]
-    # pval = stats.chi2.sf(qljungbox, lags)
-    # if not boxpierce:
-    #     return qljungbox, pval
-    # else:
-    #     qboxpierce = nobs * np.cumsum(acfx[1:maxlag + 1] ** 2)[lags - 1]
-    #     pvalbp = stats.chi2.sf(qboxpierce, lags)
-    #     return qljungbox, pval, qboxpierce, pvalbp
-    #
+    y = x.reshape(3, 4)  # 改变矩阵的维度：行 * 列
+    print "New Array [y]: ", y
 
+    [y_rows, y_cols] = y.shape
+    print "y_rows: {}, y_cols: {}".format(y_rows, y_cols)
 
     # 标准正态分布
     # mu, sigma = 0, 0.1

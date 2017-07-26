@@ -28,7 +28,7 @@ def r_file(f):
 
 
 if __name__ == '__main__':
-    # 得到当前工作目录，即当前Python脚本工作的目录路径:
+    # 得到当前工作目录,即当前Python脚本工作的目录路径:
     print "The current working directory: {}".format(os.getcwd())
     # 获取系统名称
     print "OS name: {}".format(platform.system())
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     print "OS separator: {}".format(os.sep)
 
     # 返回指定目录下的所有文件和目录名
-    filePath = os.getcwd() + os.altsep + "../resources/"
+    filePath = os.getcwd() + os.sep + "../resources/"
     fileName = '{}example_data.csv'.format(filePath)
     print "File Path: {}".format(filePath)
     print "Files List: {}".format(os.listdir(filePath))

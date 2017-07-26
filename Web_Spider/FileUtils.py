@@ -3,7 +3,6 @@
 import os
 import platform
 
-from matplotlib import pyplot
 from pandas import datetime
 from pandas import read_csv
 
@@ -52,6 +51,7 @@ if __name__ == '__main__':
 
     series = read_csv(fileName, header=0, parse_dates=[0], index_col=0, squeeze=True, date_parser=parser, sep=';')
     diff = series.diff()
-    pyplot.plot(diff)
+    print "diff series: {}".format(diff)
+    # pyplot.plot(diff)
     # pyplot.show()
-    pyplot.close()
+    # pyplot.close()

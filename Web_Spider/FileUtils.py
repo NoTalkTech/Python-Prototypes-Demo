@@ -11,10 +11,10 @@ from pandas import read_csv
 
 def f_handler(f, mode):
     fo = open(f, mode)
-    print "FileName: ", fo.name
-    print "Does it opened: ", fo.closed
-    print "Access mode: ", fo.mode
-    print "SoftSpace: ", fo.softspace
+    logger.info("FileName: {}".format(fo.name))
+    logger.info("Does it opened: {}".format(fo.closed))
+    logger.info("Access mode: {}".format(fo.mode))
+    logger.info("SoftSpace: {}".format(fo.softspace))
     return fo
 
 
@@ -51,18 +51,17 @@ if __name__ == '__main__':
     logger.info("Script path: {}".format(cur_file_dir()))
 
     # 得到当前工作目录,即当前Python脚本工作的目录路径:
-    print "The current working directory: {}".format(os.getcwd())
+    logger.info("The current working directory: {}".format(os.getcwd()))
     # 获取系统名称
-    print "OS name: {}".format(platform.system())
+    logger.info("OS name: {}".format(platform.system()))
     # 路径分割符
-    print "OS separator: {}".format(os.sep)
+    logger.info("OS separator: {}".format(os.sep))
 
     # 返回指定目录下的所有文件和目录名
     filePath = os.getcwd() + os.sep + "resources" + os.sep
-
     fileName = '{}example_data.csv'.format(filePath)
-    print "File Path: {}".format(filePath)
-    print "Files List: {}".format(os.listdir(filePath))
+    logger.info("File Path: {}".format(filePath))
+    logger.info("Files List: {}".format(os.listdir(filePath)))
 
     # r+ 以读写模式打开文件,文件可读可写，可写到文件的任何位置
     # w+ 以只写模式打开文件,先把文件内容清空（truncate the file first）
@@ -74,7 +73,7 @@ if __name__ == '__main__':
 
     series = read_csv(fileName, header=0, parse_dates=[0], index_col=0, squeeze=True, date_parser=parser, sep=';')
     diff = series.diff()
-    print "diff series: {}".format(diff)
+    logger.info("diff series: {}".format(diff))
     # pyplot.plot(diff)
     # pyplot.show()
     # pyplot.close()

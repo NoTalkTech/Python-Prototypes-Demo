@@ -3,6 +3,10 @@
 import math
 import time
 
+import support
+
+print support.print_func("Test how to import Moudle.")
+
 if True:
     print "Answer"
     print "True"

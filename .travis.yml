@@ -14,9 +14,10 @@ install:
   - pip install --upgrade pandas
   - pip install --upgrade statsmodels
   - pip install --upgrade matplotlib
+  - pip install --upgrade scipy
 
 script:
   - python ./Demo/StatsModelsDemo.py
   - python ./test.py
   - python ./Demo/NumpyDemo.py
-  - python ./Web_Spider/FileUtils.py
+  - python ./Web_Spider/WebSpiderFileUtils.py

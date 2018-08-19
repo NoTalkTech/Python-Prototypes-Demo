@@ -15,6 +15,7 @@ install:
   - pip install --upgrade statsmodels
   - pip install --upgrade matplotlib
   - pip install --upgrade scipy
+  - pip install --upgrade kafka
 
 script:
   - python ./Demo/StatsModelsDemo.py

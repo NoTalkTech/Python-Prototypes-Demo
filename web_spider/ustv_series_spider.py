@@ -15,7 +15,7 @@ reload(sys)
 sys.getdefaultencoding().encode("gbk")
 
 
-class Archives(object):
+class archives(object):
     global start
 
     @staticmethod
@@ -81,7 +81,7 @@ def cur_file_dir():
 if __name__ == '__main__':
     start = time.time()
     print(repr(start))
-    a = Archives()
+    a = archives()
     a.main()
     end = time.time()
     print(repr(end - start))

@@ -45,7 +45,7 @@ class FileUtils:
 
 if __name__ == '__main__':
     print os.getcwd()
-    handler = FileUtils(os.getcwd(), "test.csv")
+    handler = FileUtils(os.getcwd(), "shuihuzhuan.csv")
     FileUtils.loginfo(handler.__doc__)
     FileUtils.loginfo(handler.get_file_name())
     FileUtils.loginfo(handler.read_context())

@@ -18,7 +18,7 @@ install:
   - pip install --upgrade kafka
 
 script:
-  - python ./Demo/StatsModelsDemo.py
+  - python ./demo/stats_models_demo.py
   - python ./test.py
-  - python ./Demo/NumpyDemo.py
-  - python ./Web_Spider/WebSpiderFileUtils.py
+  - python ./demo/numpy_demo.py
+  - python ./web_spider/web_spider_file_utils.py

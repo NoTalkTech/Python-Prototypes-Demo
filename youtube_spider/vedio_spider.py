@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # encoding=utf-8
 # from importlib import reload
+import json
+import re
+import shutil
+import sys
 from imp import reload
 
 import requests
-import re
-import json
-import sys
-import shutil
 import urlparse2
 
 """ youtube """

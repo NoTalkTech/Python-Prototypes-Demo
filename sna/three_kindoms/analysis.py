@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 import sys
@@ -13,14 +13,14 @@ def read_basic_data(src_file):
 if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding('utf8')
-    print unicode('宋江', 'utf-8')
+    print(unicode('宋江', 'utf-8'))
     novel_data = read_basic_data('./data/shuihuzhuan.csv')
     novel_data = novel_data.replace('\n', '')
     novel_set = novel_data.split(' ')
     novel_set = [k for k in novel_set if k != '']
     songjiang_set = [k for k in novel_set if unicode('宋江', 'utf-8') in k]
 
-    print novel_set[0].encode('utf-8')
+    print(novel_set[0].encode('utf-8'))
     # print songjiang_set
     # heros = pd.read_excel('水浒人物.xlsx')
     #

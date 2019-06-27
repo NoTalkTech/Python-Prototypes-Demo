@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 """
 Description: A tool for calculating the difference between TP / (TP + FP) and FN / (FN + TN)

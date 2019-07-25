@@ -8,13 +8,14 @@ Version: 1.0
 """
 
 import argparse
+import os
 
 import pandas as pd
 import pandas.core.common as com
 
 
 def calc_diff(file, label_field, predict_field, sep=',', encoding='utf-8', ignore_fields=None, split_rate=0.7):
-    if not file:
+    if not os.access(file, os.F_OK):
         print('FileNotFoundError: %s not found' % file)
         exit(-1)
     else:

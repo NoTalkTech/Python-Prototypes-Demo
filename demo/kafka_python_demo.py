@@ -72,9 +72,9 @@ class UdfConsumer:
             for msg in self.consumer:
                 yield msg
         except KeyboardInterrupt as e:
-            print e
+            print(e)
         finally:
-            print "Finally close consumer and autocommit offsets."
+            print("Finally close consumer and autocommit offsets.")
             self.consumer.commit_async(msg_offsets)
 
 
@@ -110,7 +110,7 @@ def main(x_type, group, key=None):
                 msg_offsets[TopicPartition(KAFKA_TOPIC, msg.partition)] = OffsetAndMetadata(msg.offset, None)
 
             for k in msg_offsets:
-                print 'Partition: %s, Offset: %s' % (k, msg_offsets[k])
+                print('Partition: %s, Offset: %s' % (k, msg_offsets[k]))
 
                 # res = consumer_client.consumer.commit_async(msg_offsets)
                 # print ("commit offset async: %s, %s" % (res.is_done, res.value))

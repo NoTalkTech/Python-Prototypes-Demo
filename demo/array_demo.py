@@ -48,6 +48,6 @@ def lookup_target_func3(arr, tgt):
 if __name__ == '__main__':
     nums = [2, 7, 11, 15]
     target = 26
-    print lookup_target_func1(nums, target)
-    print lookup_target_func2(nums, target)
-    print lookup_target_func3(nums, target)
+    print(lookup_target_func1(nums, target))
+    print(lookup_target_func2(nums, target))
+    print(lookup_target_func3(nums, target))

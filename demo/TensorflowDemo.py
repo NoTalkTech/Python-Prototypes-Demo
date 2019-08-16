@@ -33,7 +33,7 @@ def tf_demo1():
     for step in range(201):
         sess.run(train)
         if step % 20 == 0:
-            print "[TF_DEMO1] ==> ", step, sess.run(W), sess.run(b)
+            print("[TF_DEMO1] ==> ", step, sess.run(W), sess.run(b))
 
             # Learns best fit is W: [0.1], b: [0.3]
 
@@ -64,7 +64,7 @@ def tf_demo2():
     #
     # 返回值 'result' 是一个 numpy `ndarray` 对象.
     result = sess.run(product)
-    print "[TF_DEMO2] ==> ", result
+    print("[TF_DEMO2] ==> ", result)
     # ==> [[ 12.]]
 
     # 任务完成, 关闭会话.

@@ -3,15 +3,15 @@
 # Author : Wallace Huang
 # Time   : 2016-9-28 16:38:47
 import re
-import urllib2
+import urllib.request
 
 
 # Get HTML context
 def gethtml(url):
-    print "Request url is: {}".format(url)
-    url_req = urllib2.Request(url)
-    print "url_req: {}".format(url_req)
-    url_file = urllib2.urlopen(url_req)
+    print("Request url is: {}".format(url))
+    url_req = urllib.request.Request(url)
+    print("url_req: {}".format(url_req))
+    url_file = urllib.request.urlopen(url_req)
     url_html = url_file.read()
     url_html = url_html.decode('utf8')
     return url_html
@@ -25,7 +25,7 @@ def getdata(htmlcontext, reg):
 
 
 if __name__ == '__main__':
-    keyword = raw_input("Please input a key word: ")
+    keyword = input("Please input a key word: ")
     url1 = 'https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=' + str(keyword)
     # url_param = 'https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=' + keyword
     mailpattern = re.compile("[^\._:>\\-][\w\.-]+@(?:[A-Za-z0-9]+\.)+[A-Za-z]+")
@@ -33,4 +33,4 @@ if __name__ == '__main__':
     html = gethtml(url1)
     # res=getData(html,imgPattren)
     # print repr(html)
-    print html
+    print(html)

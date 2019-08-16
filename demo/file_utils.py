@@ -10,24 +10,24 @@ class FileUtils:
 
     @classmethod
     def loginfo(cls, msg):
-        print repr(msg)
+        print(repr(msg))
 
     def __init__(self, filepath=os.getcwd(), filename=''):
         # 构造函数，生成对像时被调用
-        print "Start to init object FileUtils"
+        print("Start to init object FileUtils")
         self.__fileName = filename
         self.__filepath = filepath
         if self.__filepath.endswith(os.sep):
             self.__document = open(filepath + filename, "w+")
         else:
             self.__document = open(filepath + os.sep + filename, "w+")
-        print "Succeed to init object FileUtils"
+        print("Succeed to init object FileUtils")
 
     def __del__(self):
         # 析构函数，删除对像时被调用
-        print "Start to delete object FileUtils"
+        print("Start to delete object FileUtils")
         self.__document.close()
-        print "Succeed to delete object FileUtils"
+        print("Succeed to delete object FileUtils")
 
     def get_file_name(self):
         # type: () -> str
@@ -36,7 +36,7 @@ class FileUtils:
     def read_context(self):
         self.__document.write("Test File\nwelcome!")
         # 输出当前指针位置
-        print self.__document.tell()
+        print(self.__document.tell())
         # 设置指针回到文件最初
         self.__document.seek(os.SEEK_SET)
         context = self.__document.read()
@@ -44,7 +44,7 @@ class FileUtils:
 
 
 if __name__ == '__main__':
-    print os.getcwd()
+    print(os.getcwd())
     handler = FileUtils(os.getcwd(), "shuihuzhuan.csv")
     FileUtils.loginfo(handler.__doc__)
     FileUtils.loginfo(handler.get_file_name())

@@ -12,13 +12,13 @@ def statsTest(x, lags=1):
     :param x:
     :type lags: int
     """
-    print "inSer: {}".format(x)
+    print("inSer: {}".format(x))
     inSer = pd.Series(x)
-    print "inSer_Size: {}".format(inSer.size)
+    print("inSer_Size: {}".format(inSer.size))
     adf = ADF(inSer, maxlag=lags)
-    print "adfStat: {}, p_value: {}".format(adf[0], adf[1])
+    print("adfStat: {}, p_value: {}".format(adf[0], adf[1]))
     [[lbStat], [lb]] = acorr_ljungbox(inSer, lags=lags)
-    print "lbStat: {}, p_value: {}".format(lbStat, lb)
+    print("lbStat: {}, p_value: {}".format(lbStat, lb))
 
 
 if __name__ == '__main__':

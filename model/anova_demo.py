@@ -22,7 +22,7 @@ if __name__ == '__main__':
     data = [['a1', 25.6], ['a1', 22.2], ['a1', 28.0], ['a1', 29.8], ['a2', 240.4], ['a2', 230.4], ['a2', 210.4]]
     df = pd.DataFrame(data, columns=['A', 'B'])
     print(df)
-    model1 = ols('B ~ A', df).fit()
+    model1 = ols('B ~ A ', df).fit()
     anova1 = anova_lm(model1)
     print(anova1)
 

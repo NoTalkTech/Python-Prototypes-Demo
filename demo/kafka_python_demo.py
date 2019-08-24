@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 # Kafka Consumer
-import sys
+import argparse
 import time
 
 import simplejson as json
@@ -12,6 +12,9 @@ from kafka import TopicPartition
 from kafka.errors import KafkaError
 
 msg_offsets = {}
+KAFKA_HOST = "127.0.0.1"
+KAFKA_PORT = 9092
+KAFKA_TOPIC = "test_hby"
 
 
 class UdfProducer:
@@ -32,12 +35,12 @@ class UdfProducer:
 
     def sendjsondata(self, params):
         try:
-            parmas_message = json.dumps(params, ensure_ascii=False)
+            params_message = json.dumps(params, ensure_ascii=False)
             producer = self.producer
-            print(parmas_message)
-            v = parmas_message.encode('utf-8')
+            print(params_message)
+            v = params_message.encode('utf-8')
             k = key.encode('utf-8')
-            print("send msg:(k,v)", k, v)
+            print('send msg:({},{})'.format(k, v))
             producer.send(self.kafkaTopic, key=k, value=v)
             producer.flush()
         except KafkaError as e:
@@ -56,28 +59,25 @@ class UdfConsumer:
         self.consumer = KafkaConsumer(self.kafkaTopic, group_id=self.groupId,
                                       bootstrap_servers='{kafka_host}:{kafka_port}'.format(
                                           kafka_host=self.kafkaHost,
-                                          kafka_port=self.kafkaPort)
-                                      )
+                                          kafka_port=self.kafkaPort))
 
     def consume_message(self):
         try:
-            for p in self.consumer.partitions_for_topic(self.kafkaTopic):
-                print("[Topic %s, Partition %s] Offset = %s" % (self.kafkaTopic,
-                                                                p,
-                                                                self.consumer.committed(
-                                                                    TopicPartition(self.kafkaTopic, p))))
+            if self.consumer.partitions_for_topic(self.kafkaTopic):
+                # this block should not be used on the start-up
+                for p in self.consumer.partitions_for_topic(self.kafkaTopic):
+                    print("[Topic %s, Partition %s] Offset = %s" % (self.kafkaTopic,
+                                                                    p,
+                                                                    self.consumer.committed(
+                                                                        TopicPartition(self.kafkaTopic, p))))
             for msg in self.consumer:
                 yield msg
         except KeyboardInterrupt as e:
             print(e)
         finally:
-            print("Finally close consumer and autocommit offsets.")
             self.consumer.commit_async(msg_offsets)
-
-
-KAFKA_HOST = "localhost"
-KAFKA_PORT = 9092
-KAFKA_TOPIC = "test_hby"
+            # self.consumer.commit(msg_offsets)
+            print("Finally close consumer and autocommit offsets.")
 
 
 def main(x_type, group, key=None):
@@ -94,12 +94,22 @@ def main(x_type, group, key=None):
 
     """Consumer Test"""
     if x_type == 'c':
+        # consumer = KafkaConsumer(KAFKA_TOPIC,
+        #                          group_id=group,
+        #                          bootstrap_servers=['{kafka_host}:{kafka_port}'.format(
+        #                              kafka_host=KAFKA_HOST,
+        #                              kafka_port=KAFKA_PORT)])
+        #
+        # for message in consumer:
+        #     print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
+        #                                          message.offset, message.key,
+        #                                          message.value.decode('utf-8')))
         msg_offsets = {}
         consumer_client = UdfConsumer(KAFKA_HOST, KAFKA_PORT, KAFKA_TOPIC, group)
         print("========> consumer: ", consumer_client)
         messages = consumer_client.consume_message()
         for msg in messages:
-            print("msg-------->k,v", msg.key, msg.value)
+            print('msg => k={}, v={}'.format(msg.key, msg.value))
             # print("offset------>p,o", msg.partition, msg.offset)
             if TopicPartition(KAFKA_TOPIC, msg.partition) in msg_offsets:
                 msg_offsets[TopicPartition(KAFKA_TOPIC, msg.partition)] = OffsetAndMetadata(msg.offset, None)
@@ -108,15 +118,15 @@ def main(x_type, group, key=None):
 
             for k in msg_offsets:
                 print('Partition: %s, Offset: %s' % (k, msg_offsets[k]))
-
-                # res = consumer_client.consumer.commit_async(msg_offsets)
                 # print ("commit offset async: %s, %s" % (res.is_done, res.value))
+                # res = consumer_client.consumer.commit_async(msg_offsets)
 
 
 if __name__ == '__main__':
-    x_type = sys.argv[1]
-    group = sys.argv[2]
-    key = sys.argv[3]
-    # print x_type, group, key
-    # main('p', group, key)
-    main(x_type, group, key)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--type', type=str, default='p')
+    parser.add_argument('--group', type=str, default='')
+    parser.add_argument('--key', type=str, default=None)
+    arg = parser.parse_args()
+
+    main(arg.task_type, arg.group, arg.key)

@@ -8,7 +8,9 @@ keymaps/
 _mac/
 colors/
 *.ipynb
-
+.DS_Store
+*.png
+*.pt
 # C extensions
 *.so
 

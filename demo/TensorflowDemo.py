@@ -5,7 +5,7 @@ import numpy as np
 import tensorflow as tf
 
 
-def tfdemo1():
+def tf_demo1():
     # Create 100 phony x, y data points in NumPy, y = x * 0.1 + 0.3
     x_data = np.random.rand(100).astype(np.float32)
     y_data = x_data * 0.1 + 0.3
@@ -33,12 +33,12 @@ def tfdemo1():
     for step in range(201):
         sess.run(train)
         if step % 20 == 0:
-            print "[TFDEMO1] ==> ", step, sess.run(W), sess.run(b)
+            print("[TF_DEMO1] ==> ", step, sess.run(W), sess.run(b))
 
             # Learns best fit is W: [0.1], b: [0.3]
 
 
-def tfdemo2():
+def tf_demo2():
     # 创建一个常量 op, 产生一个 1x2 矩阵. 这个 op 被作为一个节点
     # 加到默认图中.
     # 构造器的返回值代表该常量 op 的返回值.
@@ -64,7 +64,7 @@ def tfdemo2():
     #
     # 返回值 'result' 是一个 numpy `ndarray` 对象.
     result = sess.run(product)
-    print "[TFDEMO2] ==> ", result
+    print("[TF_DEMO2] ==> ", result)
     # ==> [[ 12.]]
 
     # 任务完成, 关闭会话.
@@ -72,5 +72,5 @@ def tfdemo2():
 
 
 if __name__ == '__main__':
-    tfdemo1()
-    tfdemo2()
+    tf_demo1()
+    tf_demo2()

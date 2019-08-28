@@ -3,21 +3,24 @@ sudo: false
 language: python
 
 python:
-  - 2.7
+  - 3.7
 
 matrix:
   allow_failures:
     - python: nightly
 
 install:
-  - pip install --upgrade pip
-  - pip install --upgrade pandas
-  - pip install --upgrade statsmodels
-  - pip install --upgrade matplotlib
-  - pip install --upgrade scipy
+  - pip3 install --upgrade pip
+  - pip3 install --upgrade pandas
+  - pip3 install --upgrade statsmodels
+  - pip3 install --upgrade matplotlib
+  - pip3 install --upgrade scipy
+  - pip3 install --upgrade kafka
+  - pip3 install --upgrade flair
+  - pip3 install --upgrade tensorflow
 
 script:
-  - python ./Demo/StatsModelsDemo.py
+  - python ./demo/stats_models_demo.py
   - python ./test.py
-  - python ./Demo/NumpyDemo.py
-  - python ./Web_Spider/WebSpiderFileUtils.py
+  - python ./demo/numpy_demo.py
+  - python ./web_spider/web_spider_file_utils.py

@@ -9,18 +9,18 @@ if __name__ == '__main__':
 
     b = [[1.0, 2.0], [2.0, 1.8], [3.0, 8.0], [4.0, 1.3], [5.0, 4.5], [6.0, 9.2]]
     x = np.asarray(b)
-    print "Input Array [x]: ", x
+    print("Input Array [x]: ", x)
     rows = x.shape[0]  # 获取矩阵的行数,即第一维度
-    print "x_rows: {}".format(rows)
+    print("x_rows: {}".format(rows))
 
     columns = x.shape[1]  # 获取矩阵的列数,即第二维度
-    print "x_cols: {}".format(columns)
+    print("x_cols: {}".format(columns))
 
     y = x.reshape(3, 4)  # 改变矩阵的维度：行 * 列
-    print "New Array [y]: ", y
+    print("New Array [y]: ", y)
 
     [y_rows, y_cols] = y.shape
-    print "y_rows: {}, y_cols: {}".format(y_rows, y_cols)
+    print("y_rows: {}, y_cols: {}".format(y_rows, y_cols))
 
     # 标准正态分布
     # mu, sigma = 0, 0.1

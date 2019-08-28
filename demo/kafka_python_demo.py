@@ -94,16 +94,6 @@ def main(x_type, group, key=None):
 
     """Consumer Test"""
     if x_type == 'c':
-        # consumer = KafkaConsumer(KAFKA_TOPIC,
-        #                          group_id=group,
-        #                          bootstrap_servers=['{kafka_host}:{kafka_port}'.format(
-        #                              kafka_host=KAFKA_HOST,
-        #                              kafka_port=KAFKA_PORT)])
-        #
-        # for message in consumer:
-        #     print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
-        #                                          message.offset, message.key,
-        #                                          message.value.decode('utf-8')))
         msg_offsets = {}
         consumer_client = UdfConsumer(KAFKA_HOST, KAFKA_PORT, KAFKA_TOPIC, group)
         print("========> consumer: ", consumer_client)

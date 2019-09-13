@@ -1,6 +1,10 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-# Array Demo
+# python demo
+import os
+from os.path import join
+
+import pandas as pd
 
 
 def lookup_target_func1(arr, tgt):
@@ -46,8 +50,19 @@ def lookup_target_func3(arr, tgt):
 
 
 if __name__ == '__main__':
+    # array process
     nums = [2, 7, 11, 15]
     target = 26
     print(lookup_target_func1(nums, target))
     print(lookup_target_func2(nums, target))
     print(lookup_target_func3(nums, target))
+
+    # Read parquet file
+    current_path = os.getcwd()
+    print('=> current_path = {}'.format(current_path))
+    data1 = pd.read_parquet(join(current_path, 'hdfs'), engine='pyarrow')
+    print('=> data_shape = {}'.format(data1.shape))
+    print('=> data_iloc {}'.format(data1.iloc[0:20, :]))
+    # print(data2)
+    # data = pd.concat([data1, data2, data3], axis=0, ignore_index=True)
+    # print(data)

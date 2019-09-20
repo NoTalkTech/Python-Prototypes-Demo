@@ -2,9 +2,8 @@
 # -*- coding: UTF-8 -*-
 # python demo
 import os
-from os.path import join
-
 import pandas as pd
+from os.path import join
 
 
 def lookup_target_func1(arr, tgt):
@@ -60,9 +59,12 @@ if __name__ == '__main__':
     # Read parquet file
     current_path = os.getcwd()
     print('=> current_path = {}'.format(current_path))
-    data1 = pd.read_parquet(join(current_path, 'hdfs'), engine='pyarrow')
+    data1 = pd.read_parquet(
+        join(current_path, 'hdfs/part-00002-140b6595-b507-4aca-afd9-a147ce98ffd4-c000.snappy.parquet'),
+        engine='pyarrow')
     print('=> data_shape = {}'.format(data1.shape))
     print('=> data_iloc {}'.format(data1.iloc[0:20, :]))
+
     # print(data2)
     # data = pd.concat([data1, data2, data3], axis=0, ignore_index=True)
     # print(data)

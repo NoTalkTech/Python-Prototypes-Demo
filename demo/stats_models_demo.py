@@ -6,7 +6,7 @@ from statsmodels.stats.diagnostic import acorr_ljungbox
 from statsmodels.tsa.stattools import adfuller as ADF
 
 
-def statsTest(x, lags=1):
+def stats_test(x, lags=1):
     """
 
     :param x:
@@ -27,5 +27,5 @@ if __name__ == '__main__':
     # print "res: {}".format(res)
     x = [1, 2, 3, 6, 7, 3, 1, 4, 6, 89, 5, 7, 2, 1, 20, 60, 1000, 10, 3, 4, 6, 8, 9, 12, 56, 11, 9, 54]
     # y = [1, 2, 3, 4, 5, 6, 7]
-    statsTest(x)
+    stats_test(x)
     # print "just do a test"

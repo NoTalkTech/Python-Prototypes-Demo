@@ -10,9 +10,24 @@ import os
 
 import cv2
 import face_recognition
+from PIL import Image
 
-if __name__ == '__main__':
-    parent_path = os.path.dirname(os.getcwd())
+parent_path = os.path.dirname(os.getcwd())
+
+
+def detect_face():
+    image = face_recognition.load_image_file(parent_path + '/resources/nba_all_star.png')
+    face_locates = face_recognition.face_locations(image)
+    print('found {} face(s) in this photograph.'.format(len(face_locates)))
+    for face_location in face_locates:
+        t, r, b, l = face_location
+        print('A face is located at pixel location Top:{},Left:{},Bottom:{},Right:{}'.format(t, r, b, l))
+        face_image = image[t:b, l:r]
+        pil_image = Image.fromarray(face_image)
+        pil_image.show()
+
+
+def recognition_face_live():
     # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
     # other example, but it includes some basic performance tweaks to make things run a lot faster:
     #   1. Process each video frame at 1/4 resolution (though still display it at full resolution)
@@ -107,3 +122,8 @@ if __name__ == '__main__':
     # Release handle to the webcam
     video_capture.release()
     cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    detect_face()
+    # recognition_face_live()

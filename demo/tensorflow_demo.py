@@ -3,6 +3,7 @@
 
 import numpy as np
 import tensorflow as tf
+from tensorflow import keras
 
 
 def tf_demo1():
@@ -13,7 +14,7 @@ def tf_demo1():
     # Try to find values for W and b that compute y_data = W * x_data + b
     # (We know that W should be 0.1 and b 0.3, but TensorFlow will
     # figure that out for us.)
-    W = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+    W = tf.Variable(tf.random_uniform_initializer([1], -1.0, 1.0))
     b = tf.Variable(tf.zeros([1]))
     y = W * x_data + b
 
@@ -72,5 +73,19 @@ def tf_demo2():
 
 
 if __name__ == '__main__':
-    tf_demo1()
-    tf_demo2()
+    mnist = keras.datasets.mnist
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    x_train, x_test = x_train / 255.0, x_test / 255.0
+    model = tf.keras.models.Sequential([
+        tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(10, activation='softmax')])
+    model.summary()
+    model.compile(optimizer='adam',
+                  loss='sparse_categorical_crossentropy',
+                  metrics=['accuracy'])
+    model.fit(x_train, y_train, epochs=5)
+    model.evaluate(x_test, y_test)
+    # tf_demo1()
+    # tf_demo2()

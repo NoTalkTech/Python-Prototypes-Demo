@@ -14,7 +14,7 @@ def f_handler(f, mode):
     logger.info("FileName: {}".format(fo.name))
     logger.info("Does it opened: {}".format(fo.closed))
     logger.info("Access mode: {}".format(fo.mode))
-    logger.info("SoftSpace: {}".format(fo.softspace))
+    # logger.info("SoftSpace: {}".format(fo.softspace))
     return fo
 
 

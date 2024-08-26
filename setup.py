@@ -14,7 +14,7 @@ setup(
     long_description=readme,
     author='Wallace Huang',
     author_email='h417652303@gmail.com',
-    url='https://github.com/kennethreitz/samplemod',
+    url='https://github.com/NoTalkTech/Python-Prototypes-Demo.git',
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
     install_requires=['numpy>=2.1.0']

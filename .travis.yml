@@ -20,7 +20,7 @@ install:
   - pip3 install --upgrade tensorflow
 
 script:
-  - python ./demo/stats_models_demo.py
-  - python ./test.py
-  - python ./demo/numpy_demo.py
-  - python ./web_spider/web_spider_file_utils.py
+  - python ./prototypes_sample/demo/stats_models_demo.py
+  - python ./prototypes_sample/test.py
+  - python ./prototypes_sample/demo/numpy_demo.py
+  - python ./prototypes_sample/web_spider/web_spider_file_utils.py

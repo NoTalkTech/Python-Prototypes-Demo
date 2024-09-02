@@ -17,6 +17,6 @@ setup(
     url='https://github.com/NoTalkTech/Python-Prototypes-Demo.git',
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
-    install_requires=['numpy>=2.1.0']
+    install_requires=['numpy>=2.1.0'],
     tests_require=['pytest>=3.3.1', 'pytest-cov>=2.5.1']
 )

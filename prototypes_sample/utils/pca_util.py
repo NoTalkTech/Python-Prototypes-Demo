@@ -15,20 +15,26 @@ logging.basicConfig(stream=sys.stdout,
                     level=logging.INFO)
 
 
-def stardard_scaler(data):
+def standard_scaler(data):
     """
-    stardard_scaler
+    standard_scaler
     Args:
         data (_type_): data to be standardized
     """
     scaler = StandardScaler()
     scaled_data = scaler.fit_transform(pd.DataFrame(data))
-    logging.info("raw data: {}".format(data))
-    logging.info("scaled data: {}".format(scaled_data))
+    logging.info("raw data: %s", data)
+    logging.info("scaled data: %s", scaled_data)
     return scaled_data
 
 
-def caclucate_woe(data: pd.DataFrame, bins: list):
+def calculate_woe(data: pd.DataFrame, bins: list):
+    """
+    calculate_woe
+    Args:
+        data (_type_): data to be standardized
+        bins: list of bins 
+    """
     data['bin'] = pd.cut(data['X'], bins=bins)
     grouped = data.groupby('bin')['y'].agg(['count', 'sum'])
     grouped.columns = ['total', 'good']  # 'good' means y=1
@@ -39,6 +45,11 @@ def caclucate_woe(data: pd.DataFrame, bins: list):
 
 
 def estimate_parameters_summary(data):
+    """
+    estimate_parameters_summary
+    Args:
+        data (_type_): data to be processed
+    """
     # Step 1: 添加截距项
     data['intercept'] = 1
 
@@ -69,8 +80,14 @@ def estimate_parameters_summary(data):
 
 
 def z_test(conversions, nobs):
-    stat, p_value = proportions_ztest(conversions, nobs)
-    logging.info(f"Z 值: {stat}, p 值: {p_value}")
+    """
+    z_test
+    Args:
+        conversions (_type_): 
+        nobs: 
+    """
+    z_value, p = proportions_ztest(conversions, nobs)
+    logging.info("Z 值: %s, p 值: %s", z_value, p)
 
 
 if __name__ == 'main':
@@ -79,12 +96,12 @@ if __name__ == 'main':
         'Feature2': [1, 3, 5, 7, 9],
         'Feature3': [2, 4, 6, 8, 10]
     }
-    stardard_scaler(mock_data)
-    data = pd.DataFrame({
+    standard_scaler(mock_data)
+    data1 = pd.DataFrame({
         'X': [0, 1.2, 2.3, 3.4, 4.3, 5.2, 4.3, 4.9],
         'y': [0, 1, 0, 1, 0, 1, 0, 1]
     })
-    caclucate_woe(data, [0, 2, 4, 6])
+    calculate_woe(data1, [0, 2, 4, 6])
 
     data2 = pd.DataFrame({
         'X': [0, 1.2, 2.3, 3.4, 4.3, 5.2, 4.3, 4.9, 4.3, 4.1, 4.03, 4.32,
@@ -94,10 +111,10 @@ if __name__ == 'main':
               1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
               1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     })
-    data2['X'] = stardard_scaler(data2['X'])
+    data2['X'] = standard_scaler(data2['X'])
     estimate_parameters_summary(data2)
 
-    conversions = np.array([420, 100])
-    nobs = np.array([3000, 1000])
-    stat, p_value = proportions_ztest(conversions, nobs)
+    conv1 = np.array([420, 100])
+    nobs1 = np.array([3000, 1000])
+    stat, p_value = proportions_ztest(conv1, nobs1)
     print(f"Z 值: {stat}, p 值: {p_value}")

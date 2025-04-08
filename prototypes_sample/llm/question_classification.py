@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+import os
 
 # 替换为你的 DeepSeek API Key
 DEEPSEEK_API_KEY = "sk-"
@@ -72,7 +73,13 @@ def main():
             print(f"处理失败：{e}")
 
     # 可选：保存结果为 JSON 文件
-    with open("deepseek_analysis_results.json", "w", encoding="utf-8") as f:
+    # Create output directory if it doesn't exist
+    output_dir = os.path.join(os.path.dirname(__file__), "output")
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Save results to output directory
+    output_file = os.path.join(output_dir, "deepseek_analysis_results.json")
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
 if __name__ == "__main__":

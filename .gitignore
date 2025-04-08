@@ -100,3 +100,6 @@ ENV/
 .idea/
 Web_Spider.iml
 .vscode
+
+# output
+output
